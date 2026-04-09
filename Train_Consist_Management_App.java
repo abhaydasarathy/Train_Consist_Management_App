@@ -1,44 +1,25 @@
-import java.util.LinkedHashSet;
+import java.util.HashMap;
+import java.util.Map;
 
-public class UC5_OrderedUniqueBogies {
+public class UC6_BogieCapacityMap {
 
     public static void main(String[] args) {
 
-        LinkedHashSet<String> train = new LinkedHashSet<>();
+        // Create HashMap
+        HashMap<String, Integer> bogieCapacity = new HashMap<>();
 
-        System.out.println("🚆 TRAIN CONSIST MANAGEMENT SYSTEM - UC5");
+        System.out.println("🚆 TRAIN CONSIST MANAGEMENT SYSTEM - UC6");
         System.out.println("-----------------------------------------");
 
-        // Add bogies
-        System.out.println("\n📌 Adding bogies...");
-        addBogie(train, "Engine");
-        addBogie(train, "Sleeper");
-        addBogie(train, "Cargo");
-        addBogie(train, "Guard");
+        // Add bogie-capacity mapping
+        bogieCapacity.put("Sleeper", 72);
+        bogieCapacity.put("AC Chair", 60);
+        bogieCapacity.put("First Class", 48);
 
-        // Attempt duplicate
-        System.out.println("\n⚠ Attempting to add duplicate 'Sleeper'...");
-        addBogie(train, "Sleeper");
-
-        // Display
-        System.out.println("\n📌 Final Train Formation (Ordered & Unique):");
-        displayTrain(train);
-    }
-
-    // Method to safely add bogie
-    public static void addBogie(LinkedHashSet<String> train, String bogie) {
-        if (train.add(bogie)) {
-            System.out.println("✅ Added: " + bogie);
-        } else {
-            System.out.println("❌ Duplicate ignored: " + bogie);
+        // Display mapping
+        System.out.println("\n📌 Bogie Capacity Details:");
+        for (Map.Entry<String, Integer> entry : bogieCapacity.entrySet()) {
+            System.out.println(entry.getKey() + " → Capacity: " + entry.getValue());
         }
-    }
-
-    // Display method
-    public static void displayTrain(LinkedHashSet<String> train) {
-        for (String bogie : train) {
-            System.out.print(bogie + " -> ");
-        }
-        System.out.println("END");
     }
 }
