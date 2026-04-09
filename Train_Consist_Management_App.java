@@ -1,44 +1,41 @@
-import java.util.LinkedList;
+import java.util.LinkedHashSet;
 
-public class UC4_TrainConsist {
+public class UC5_OrderedUniqueBogies {
 
     public static void main(String[] args) {
 
-        // Create LinkedList for train consist
-        LinkedList<String> train = new LinkedList<>();
+        LinkedHashSet<String> train = new LinkedHashSet<>();
 
-        System.out.println("🚆 TRAIN CONSIST MANAGEMENT SYSTEM - UC4");
+        System.out.println("🚆 TRAIN CONSIST MANAGEMENT SYSTEM - UC5");
         System.out.println("-----------------------------------------");
 
-        // 1. Add bogies
-        train.add("Engine");
-        train.add("Sleeper");
-        train.add("AC");
-        train.add("Cargo");
-        train.add("Guard");
+        // Add bogies
+        System.out.println("\n📌 Adding bogies...");
+        addBogie(train, "Engine");
+        addBogie(train, "Sleeper");
+        addBogie(train, "Cargo");
+        addBogie(train, "Guard");
 
-        System.out.println("\n📌 Initial Train Composition:");
-        displayTrain(train);
+        // Attempt duplicate
+        System.out.println("\n⚠ Attempting to add duplicate 'Sleeper'...");
+        addBogie(train, "Sleeper");
 
-        // 2. Insert Pantry Car at position 2
-        System.out.println("\n➕ Inserting 'Pantry Car' at position 2...");
-        train.add(2, "Pantry Car");
-
-        System.out.println("\n📌 After Insertion:");
-        displayTrain(train);
-
-        // 3. Remove first and last bogie
-        System.out.println("\n❌ Removing first and last bogies...");
-        train.removeFirst();
-        train.removeLast();
-
-        // 4. Final train composition
-        System.out.println("\n📌 Final Train Composition:");
+        // Display
+        System.out.println("\n📌 Final Train Formation (Ordered & Unique):");
         displayTrain(train);
     }
 
-    // Helper method to display train
-    public static void displayTrain(LinkedList<String> train) {
+    // Method to safely add bogie
+    public static void addBogie(LinkedHashSet<String> train, String bogie) {
+        if (train.add(bogie)) {
+            System.out.println("✅ Added: " + bogie);
+        } else {
+            System.out.println("❌ Duplicate ignored: " + bogie);
+        }
+    }
+
+    // Display method
+    public static void displayTrain(LinkedHashSet<String> train) {
         for (String bogie : train) {
             System.out.print(bogie + " -> ");
         }
