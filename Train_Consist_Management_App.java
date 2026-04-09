@@ -1,32 +1,47 @@
-import java.util.HashSet;
+import java.util.LinkedList;
 
-public class UC3_UniqueBogieIDs {
+public class UC4_TrainConsist {
 
     public static void main(String[] args) {
 
-        // Create HashSet for bogie IDs
-        HashSet<String> bogieIDs = new HashSet<>();
+        // Create LinkedList for train consist
+        LinkedList<String> train = new LinkedList<>();
 
-        System.out.println("🚆 TRAIN CONSIST MANAGEMENT SYSTEM - UC3");
+        System.out.println("🚆 TRAIN CONSIST MANAGEMENT SYSTEM - UC4");
         System.out.println("-----------------------------------------");
 
-        // 1. Add bogie IDs (including duplicates)
-        System.out.println("\n📌 Adding bogie IDs...");
-        bogieIDs.add("BG101");
-        bogieIDs.add("BG102");
-        bogieIDs.add("BG103");
-        bogieIDs.add("BG101"); // Duplicate
-        bogieIDs.add("BG102"); // Duplicate
+        // 1. Add bogies
+        train.add("Engine");
+        train.add("Sleeper");
+        train.add("AC");
+        train.add("Cargo");
+        train.add("Guard");
 
-        // 2. Display bogie IDs
-        System.out.println("\n📌 Unique Bogie IDs in the system:");
-        displayBogieIDs(bogieIDs);
+        System.out.println("\n📌 Initial Train Composition:");
+        displayTrain(train);
+
+        // 2. Insert Pantry Car at position 2
+        System.out.println("\n➕ Inserting 'Pantry Car' at position 2...");
+        train.add(2, "Pantry Car");
+
+        System.out.println("\n📌 After Insertion:");
+        displayTrain(train);
+
+        // 3. Remove first and last bogie
+        System.out.println("\n❌ Removing first and last bogies...");
+        train.removeFirst();
+        train.removeLast();
+
+        // 4. Final train composition
+        System.out.println("\n📌 Final Train Composition:");
+        displayTrain(train);
     }
 
-    // Helper method to display IDs
-    public static void displayBogieIDs(HashSet<String> bogieIDs) {
-        for (String id : bogieIDs) {
-            System.out.println(id);
+    // Helper method to display train
+    public static void displayTrain(LinkedList<String> train) {
+        for (String bogie : train) {
+            System.out.print(bogie + " -> ");
         }
+        System.out.println("END");
     }
 }
